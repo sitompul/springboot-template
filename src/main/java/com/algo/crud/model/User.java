@@ -1,4 +1,4 @@
-package com.algo.crud.model;
+package com.algo.demo.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Entity
 public @Data class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,4 +16,3 @@ public @Data class User {
     private String name;
     private String email;
 }
-
