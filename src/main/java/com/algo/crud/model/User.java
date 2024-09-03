@@ -1,4 +1,4 @@
-package com.algo.demo.model;
+package com.algo.crud.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
