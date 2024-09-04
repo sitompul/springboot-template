@@ -3,18 +3,30 @@ package com.algo.crud.controller;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
+@RequestMapping("/api/util")
 public class UtilController {
 
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
-  @DeleteMapping("/reset")
-  public boolean reset() {
+  @GetMapping(value = "/check", produces="application/json")
+  public String check() {
+    return """
+    {
+      "data": true
+    }
+    """;
+  }
+
+  @DeleteMapping(value = "/reset", produces="application/json")
+  public String reset() {
 
     // Delete all existing tables.
     List<String> tables = jdbcTemplate.queryForList("SHOW TABLES", String.class);
@@ -29,6 +41,10 @@ public class UtilController {
     ")";
 
     jdbcTemplate.execute(createTableSQL);
-    return true;
+    return """
+    {
+      "data": true
+    }
+    """;
   }
 }
